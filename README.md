@@ -26,13 +26,13 @@ func main() {
 
 	// A cache with string keys and "useless" values
 	// Items are evicted after 5 minutes
-	cache_of_useless_items := simplecache.New[string, *useless](5 * time.Minute)
+	uselessCache := simplecache.New[string, *useless](5 * time.Minute)
 
 	// Add a KV pair to cache
-	cache_of_useless_items.Add("foo", &useless{prop1: "eh", prop2: 4})
+	uselessCache.Add("foo", &useless{prop1: "eh", prop2: 4})
 
 	// Retrieve a value from cache
-	val, prs := cache_of_useless_items.Get("foo")
+	val, prs := uselessCache.Get("foo")
 	if !prs {
 		fmt.Println("Item not present in cache.")
 	} else {
